@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+Create a Comic — ComicCraft
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="hero">
+
+    <p class="eyebrow">
+        GEMINI + STABLE DIFFUSION
+    </p>
+
+
+    <h1>
+        Turn an idea into a
+        five-panel comic.
+    </h1>
+
+
+    <p>
+        Describe your story, choose the mood
+        and art direction, and ComicCraft
+        builds the outline, dialogue,
+        illustrations and PDF.
+    </p>
+
+</section>
+
+
+{% if error %}
+
+<div class="alert">
+
+    {{ error }}
+
+</div>
+
+{% endif %}
+
+
+
+<form
+    class="card form-card"
+    action="/generate"
+    method="post"
+    onsubmit="showLoading()"
+>
+
+
+    <!-- STORY -->
+
+    <label>
+
+        Story Prompt
+
+        <textarea
+            name="story_prompt"
+            maxlength="{{ max_prompt_length }}"
+            required
+            placeholder="A brave fox exploring an enchanted forest..."
+        ></textarea>
+
+    </label>
+
+
+
+    <div class="grid">
+
+
+        <!-- CHARACTER -->
+
+        <label>
+
+            Main Character Name
+
+            <input
+                name="character_name"
+                required
+                value="Flick"
+                placeholder="Flick"
+            >
+
+        </label>
+
+
+
+        <!-- SETTING -->
+
+        <label>
+
+            Setting
+
+            <select name="setting">
+
+                <option>
+                    enchanted forest
+                </option>
+
+                <option>
+                    school
+                </option>
+
+                <option>
+                    space
+                </option>
+
+                <option>
+                    city
+                </option>
+
+                <option>
+                    underwater world
+                </option>
+
+            </select>
+
+        </label>
+
+
+
+        <!-- TONE -->
+
+        <label>
+
+            Story Tone
+
+            <select name="tone">
+
+                <option>
+                    light-hearted
+                </option>
+
+                <option>
+                    dramatic
+                </option>
+
+                <option>
+                    poetic
+                </option>
+
+                <option>
+                    funny
+                </option>
+
+            </select>
+
+        </label>
+
+
+
+        <!-- ART STYLE -->
+
+        <label>
+
+            Art Style
+
+            <select name="art_style">
+
+                <option>
+                    comic book
+                </option>
+
+                <option>
+                    anime
+                </option>
+
+                <option>
+                    pixel art
+                </option>
+
+                <option>
+                    realistic
+                </option>
+
+            </select>
+
+        </label>
+
+
+    </div>
+
+
+
+    <button
+        id="generate-button"
+        type="submit"
+    >
+        Generate My Comic
+    </button>
+
+
+    <p
+        id="loading"
+        class="loading"
+        hidden
+    >
+        Generating five panels.
+        This can take a few minutes...
+    </p>
+
+
+</form>
+
+
+
+<section class="info-grid">
+
+
+    <div>
+
+        <strong>
+            01
+        </strong>
+
+        <span>
+            Gemini outline
+        </span>
+
+    </div>
+
+
+    <div>
+
+        <strong>
+            02
+        </strong>
+
+        <span>
+            Gemini story
+        </span>
+
+    </div>
+
+
+    <div>
+
+        <strong>
+            03
+        </strong>
+
+        <span>
+            Stable Diffusion art
+        </span>
+
+    </div>
+
+
+    <div>
+
+        <strong>
+            04
+        </strong>
+
+        <span>
+            PDF export
+        </span>
+
+    </div>
+
+
+</section>
+
+
+{% endblock %}
